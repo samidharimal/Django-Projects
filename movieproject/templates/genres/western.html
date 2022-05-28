@@ -1,0 +1,83 @@
+{% extends 'genres/movies.html' %}
+{% load static %}
+{% block content %}
+
+
+	<h3 style="color: #93C572; text-align: center; font-size: 40px; font-weight: bold;"> Western Movies</h3>
+			<br>
+			<br>
+			<br>
+			<!--/content-inner-section-->
+			<div class="container py-md-5 py-4">
+				<div class="row">
+					{% for western in westernmovies %}
+					<div class="col-lg-4 about-right-faq align-self pr-lg-5">
+						<div class="card">
+							<h1 style= "height: 30px; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">{{western.title}}</h1>
+							<br>
+							
+							<br>
+							<hr>
+						<div>
+							<form method="" action="">
+								<fieldset class="rating">
+										<input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+										<input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+										<input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+										<input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+										<input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+										<input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+										<input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+										<input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+										<input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+										<input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+								</fieldset>
+							</form>
+						</div>
+							<p ><button style="background-color: 	#ff7f50; color: white;">Know more</button></p>
+						  </div>
+						  <br>
+						  <br>
+
+					</div>
+					{% endfor %}
+				</div>
+				</div>	
+			  <hr>
+				</div>
+				</div>
+				<!-- pagination -->
+
+				<div class=" text-center">
+					{% if is_paginated %}
+						{% if page_obj.has_previous %}
+								<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+		
+						{% endif  %}
+					   
+						{% for num in page_obj.paginator.page_range %}
+							{% if page_obj.number == num %}
+								<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+							{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+								<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{num}}</a>
+		
+		
+							{% endif %}
+		
+							{% endfor %}
+						
+						{% if page_obj.has_next %}
+								<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+		
+						{% endif  %}
+					   {% endif %}
+					
+				</div>
+				<br>
+							
+						
+			<!--//content-inner-section-->
+{% endblock content %}		
+	
